@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+<script src="https://www.gstatic.com/firebasejs/3.7.5/firebase.js"></script>
+
+
+<style>
+.tHeader{
+	 position: absolute;
+  width: 300px;
+  height: 200px;
+  z-index: 5;
+  top: 50%;
+  left: 50%;
+  margin: -100px 0 0 -150px;
+  background: #839c31;
+}
+.bodyMain{
+ background-color:gray;
+}
+
+  
+</style>
+  </head>
+<body class="bodyMain">
+<div class="tHeader" onload="userdetails();">
+<h1 id="header1"></h1>
+</div>
+
+<script>
+  var config = {
+    apiKey: "AIzaSyAWHKFroJwMgQrPsy-ToeKNUt4lxN1ReZo",
+    authDomain: "tutor-a9249.firebaseapp.com",
+    databaseURL: "https://tutor-a9249.firebaseio.com",
+    projectId: "tutor-a9249",
+    storageBucket: "tutor-a9249.appspot.com",
+    messagingSenderId: "1070196484442"
+  };
+  firebase.initializeApp(config);
+  function userdetails(){
+  firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    // User is signed in.
+   
+    var email = user.email;
+   document.getElementById('header1').value=email;
+  } else {
+    // User is signed out.
+    // ...
+  }
+});
+}
+</script>
+ </body>
+</html>

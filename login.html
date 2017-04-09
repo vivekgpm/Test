@@ -1,0 +1,117 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+<script src="https://www.gstatic.com/firebasejs/3.7.5/firebase.js"></script>
+
+
+<style>
+.tHeader{
+	 position: absolute;
+  width: 500px;
+  height: 300px;
+  z-index: 5;
+  top: 50%;
+  left: 50%;
+  margin: -100px 0 0 -150px;
+  background: #839c31;
+}
+.bodyMain{
+ background-color:gray;
+}
+.login{
+	margin-top:30px;
+	margin-left:20px;
+  position:fixed;
+}
+  .Password{
+	margin-top:80px;
+	margin-left:20px;
+  position:fixed;
+}
+.Password1{
+	margin-top:130px;
+	margin-left:20px;
+  position:fixed;
+}
+ .lgText{
+  position:fixed;
+	margin-top:15px;
+	margin-left:20px;
+   font-weight:bold;
+}
+  .pwText{
+  position:fixed;
+	margin-top:65px;
+	margin-left:20px;
+   font-weight:bold;
+}
+.pwText1{
+  position:fixed;
+	margin-top:105px;
+	margin-left:20px;
+   font-weight:bold;
+}
+    .sub{
+  position:fixed;
+	margin-top:180px;
+	margin-left:20px;
+  background:#4a319c;
+   width:160px;
+  color:#fff;
+   font-weight:bold;  
+}
+  .links{
+  position:absolute;
+  margin-top:130px;
+  	margin-left:20px;
+
+  float:left;
+  }
+  
+</style>
+  </head>
+<body class="bodyMain">
+<div class="tHeader">
+<div><span class="lgText">UserName</span> 
+<input id="username" class="login" type="text" /> 
+<span class="pwText">Password</span> 
+<input id="pwd1" class="Password" type="text" />
+<span class="pwText1">Re-enter Password</span> 
+<input id="pwd2" class="Password1" type="text" /> 
+<button id="btnLogin" class="sub" onclick="addUser();">Register</button></div>
+<br />
+</div>
+
+
+<script>
+  var config = {
+    apiKey: "AIzaSyAWHKFroJwMgQrPsy-ToeKNUt4lxN1ReZo",
+    authDomain: "tutor-a9249.firebaseapp.com",
+    databaseURL: "https://tutor-a9249.firebaseio.com",
+    projectId: "tutor-a9249",
+    storageBucket: "tutor-a9249.appspot.com",
+    messagingSenderId: "1070196484442"
+  };
+  firebase.initializeApp(config);
+  function addUser(){
+  var email= document.getElementById('username').value;
+  var password= document.getElementById('pwd1').value;
+  firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // [START_EXCLUDE]
+        if (errorCode == 'auth/weak-password') {
+          alert('The password is too weak.');
+        } else {
+          alert(errorMessage);
+        }
+        console.log(error);
+        // [END_EXCLUDE]
+      });
+  }
+</script>
+ </body>
+</html>
